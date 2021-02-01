@@ -1,0 +1,96 @@
+openapi: "3.0.3"
+info:
+  title: "Addressable RGB Strip Controller"
+  description: "REST API to control a WS2812b addressable RGB light strip."
+  version: "1.0.0"
+
+paths:
+  /strip:
+    get:
+      description: "Returns the status of the RGB strip"
+      responses:
+        200:
+          $ref: "#/paths/strip/get/response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/strip"
+    post:
+      description: "Sets the RGB strip to the requested settings"
+      requestBody:
+        $ref: "#/paths/strip/post/request"
+        schema:
+          $ref: "#/components/schemas/strip"
+      responses:
+        200:
+          $ref: "#/paths/strip/post/response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/strip"
+  /strip/section:
+    get:
+      description: "Returns the status of the RGB strip"
+      responses:
+        200:
+          $ref: "#/paths/strip/get/response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/strip"
+    post:
+      description: "Sets the RGB strip to the requested settings"
+      requestBody:
+        $ref: "#/paths/strip/post/request"
+        schema:
+          $ref: "#/components/schemas/strip"
+      responses:
+        200:
+          $ref: "#/paths/strip/post/response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/strip"
+
+components:
+  schemas:
+    strip:
+      $ref: "#/components/schemas/strip"
+      type: object
+      required:
+      properties:
+        sections:
+          type: array
+          items:
+            $ref: "#/components/schemas/section"
+    section:
+      $ref: "#/components/schemas/section"
+      type: object
+      required:
+        - function
+        - start
+        - end
+        - id
+        - name
+        - red
+        - green
+        - blue
+      properties:
+        function:
+          type: string
+          enum:
+            - solid
+        start:
+          type: integer
+        end:
+          type: integer
+        id:
+          type: integer
+        name:
+          type: string
+        red:
+          type: integer
+        green:
+          type: integer
+        blue:
+          type: integer
