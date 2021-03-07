@@ -1,0 +1,21 @@
+syntax = "proto3";
+package rgbstripcommands;
+
+service RGBStripCommand {
+    rpc TurnOn (TurnOnRequest) returns (TurnOnResponse) {}
+}
+
+message TurnOnRequest {
+    repeated LED leds = 1;
+}
+
+message TurnOnResponse {
+    repeated LED leds = 1;
+}
+
+message LED {
+    uint32 num = 1;
+    uint32 red = 2;
+    uint32 green = 3;
+    uint32 blue = 4;
+}
